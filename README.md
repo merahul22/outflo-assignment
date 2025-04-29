@@ -1,6 +1,6 @@
 #  Campaign Manager with AI Message Generator
 
-This is a full-stack campaign management system built entirely in **Next.js 13+ App Router** using **TypeScript**, **MongoDB**, and **ShadCN/UI**. It allows you to manage campaigns and generate personalized LinkedIn outreach messages using OpenAI's GPT API.
+This is a full-stack campaign management system built entirely in **Next.js 13+ App Router** using **TypeScript**, **MongoDB**, and **ShadCN/UI**. It allows you to manage campaigns and generate personalized LinkedIn outreach messages using Gemini API.
 
 ---
 
@@ -28,10 +28,18 @@ This is a full-stack campaign management system built entirely in **Next.js 13+ 
 - **MongoDB + Mongoose**
 - **Tailwind CSS**
 - **ShadCN/UI**
-- **OpenAI GPT-3.5 API**
+- **Gemini 2.5(experimental)**
+
+---
 
 ---
 
 ##  Project Structure
+
 app/ ├── api/ │ ├── campaigns/ │ │ ├── [id]/route.ts // GET, PUT, DELETE campaign by ID │ │ └── route.ts // GET all, POST new campaign │ └── personalized-message/ │ └── route.ts // POST AI-generated message ├── page.tsx // Landing page (optional) ├── components/ │ ├── CampaignForm.tsx │ ├── CampaignList.tsx │ └── MessageGeneratorForm.tsx lib/ ├── models/ │ └── campaign.model.ts // Mongoose schema for campaigns ├── mongodb.ts // MongoDB connection helper ├── services/ │ └── ai.service.ts // AI message generator using OpenAI .env.local // Environment variables
 
+yaml
+Copy
+Edit
+
+---

@@ -1,4 +1,5 @@
 // app/api/campaigns/[id]/route.ts
+export const runtime = 'nodejs';
 import { NextRequest, NextResponse } from "next/server";
 import { connectDB } from "@/lib/mongodb";
 import { Campaign } from "@/lib/models/campaign.model";

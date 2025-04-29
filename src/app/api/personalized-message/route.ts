@@ -1,4 +1,5 @@
 
+export const runtime = 'nodejs';
 import { generatePersonalizedMessage } from '@/lib/services/ai.service'; // Using the alias as per your structure
 
 // Define the POST handler for this API route

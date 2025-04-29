@@ -1,24 +1,39 @@
-// api/campaigns/[id]/route.ts
-
-import { Campaign } from "@/lib/models/campaign.model";
+// app/api/campaigns/[id]/route.ts
+import { NextRequest, NextResponse } from "next/server";
 import { connectDB } from "@/lib/mongodb";
-import { NextResponse } from "next/server";
+import { Campaign } from "@/lib/models/campaign.model";
 
-export async function GET(req: Request, { params }: { params: { id: string } }) {
+// Get a single campaign by ID
+export async function GET(
+  _req: NextRequest,
+  { params }: { params: { id: string } }
+) {
   await connectDB();
   const campaign = await Campaign.findById(params.id);
   return NextResponse.json(campaign);
 }
 
-export async function PUT(req: Request, { params }: { params: { id: string } }) {
+// Update a campaign
+export async function PUT(
+  req: NextRequest,
+  { params }: { params: { id: string } }
+) {
   await connectDB();
   const body = await req.json();
-  const updatedCampaign = await Campaign.findByIdAndUpdate(params.id, body, { new: true });
+  const updatedCampaign = await Campaign.findByIdAndUpdate(params.id, body, {
+    new: true,
+  });
   return NextResponse.json(updatedCampaign);
 }
 
-export async function DELETE(req: Request, { params }: { params: { id: string } }) {
+// Soft delete a campaign
+export async function DELETE(
+  _req: NextRequest,
+  { params }: { params: { id: string } }
+) {
   await connectDB();
-  await Campaign.findByIdAndUpdate(params.id, { status: "deleted" }, { new: true });
+  await Campaign.findByIdAndUpdate(params.id, { status: "deleted" }, {
+    new: true,
+  });
   return NextResponse.json({ message: "Campaign soft deleted" });
 }

@@ -1,16 +1,17 @@
-// api/campaigns/route.ts
+// app/api/campaigns/route.ts
+import { NextRequest, NextResponse } from "next/server";
+import { connectDB } from "@/lib/mongodb";
+import { Campaign } from "@/lib/models/campaign.model";
 
-import { NextResponse } from "next/server";
-import { connectDB } from "../../../lib/mongodb";
-import { Campaign } from "../../../lib/models/campaign.model";
-
+// Get all non-deleted campaigns
 export async function GET() {
   await connectDB();
   const campaigns = await Campaign.find({ status: { $ne: "deleted" } });
   return NextResponse.json(campaigns);
 }
 
-export async function POST(req: Request) {
+// Create a new campaign
+export async function POST(req: NextRequest) {
   await connectDB();
   const body = await req.json();
   const campaign = await Campaign.create(body);

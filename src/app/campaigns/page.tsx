@@ -1,7 +1,7 @@
 import { CampaignList } from "@/components/CampaignList";
 
 async function getCampaigns() {
-  const res = await fetch(`http://localhost:3000/api/campaigns`, { cache: "no-store" });
+  const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/campaigns`, { cache: "no-store" });
   return res.json();
 }
 
